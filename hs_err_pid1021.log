@@ -1,0 +1,33 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f07dca810d1, pid=1021, tid=1039
+#
+# JRE version: OpenJDK Runtime Environment (12.0+32) (build 12+32)
+# Java VM: OpenJDK 64-Bit Server VM (12+32, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Problematic frame:
+# C  [libjimage.so+0x40d1]  ImageStrings::find(Endian*, char const*, int*, unsigned int)+0x71
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h %e" (or dumping to /home/asedighi/Projects/FIS/java/redis/core.1021)
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:37235 -javaagent:/home/asedighi/eclipse/jee-2019-03/eclipse/configuration/org.eclipse.osgi/404/0/.cp/lib/javaagent-shaded.jar -Dfile.encoding=UTF-8 fis.TransactionManager
+
+Host: Intel(R) Core(TM) i7-8665U CPU @ 1.90GHz, 7 cores, 9G, Fedora release 29 (Twenty Nine)
+Time: Mon Jun  1 18:21:04 2020 EDT elapsed time: 48 seconds (0d 0h 0m 48s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f07d819c000):  JavaThread "Signal Dispatcher" daemon [_thread_in_vm, id=1039, stack(0x00007f07b8098000,0x00007f07b8199000)]
+
+Stack: [0x00007f07b8098000,0x00007f07b8199000],  sp=0x00007f07b8196130,  free space=1016k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libjimage.so+0x40d1]  ImageStrings::find(Endian*, char const*, int*, unsigned int)+0x71
+C  [libjimage.so+0x4dba]  ImageFileReader::find_location_index(char const*, unsigned long long*) const+0x3a
+C  [libjimage.so+0x52ba]  JIMAGE_FindResource+0xfa
+V  [libjvm.so+0x5a0c0e]
