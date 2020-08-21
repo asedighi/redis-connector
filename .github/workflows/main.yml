@@ -28,5 +28,3 @@ jobs:
       uses: aahmed-se/setup-maven@v3
     - name: Build with Maven
       run: mvn -B clean test verify package --file pom.xml
-    - name: Run SonarQube Analysis 
-      run: mvn sonar:sonar -Dsonar.projectKey=api -Dsonar.host.url=http://52.255.166.174 -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
