@@ -3,6 +3,7 @@ package com.microsoft.cse.redis.unitTests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -705,6 +706,16 @@ class DataFactoryTest
 
 		// assert that it returns null
 		assertNull(d.getZSet(k, x, y), "Null key returned something other than null.");
+	}
+
+	@Test
+	void shouldIncrement()
+	{
+
+		Long g1 = d.globalIncrement();
+		Long g2 = d.globalIncrement();
+		// Make sure the global increment actually increments.
+		assertNotEquals(g1, g2);
 	}
 
 	/**
