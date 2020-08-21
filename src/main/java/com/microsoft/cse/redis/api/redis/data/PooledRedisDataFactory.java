@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import com.jcabi.aspects.RetryOnFailure;
+import com.jcabi.log.Logger;
 import com.microsoft.cse.redis.api.helper.ConfigurationManager;
 import com.microsoft.cse.redis.api.helper.CustomLogger;
 import com.microsoft.cse.redis.api.helper.RetryValues;
@@ -82,12 +83,15 @@ public class PooledRedisDataFactory extends DataFactory
 		try
 		{
 			jd = pooledConnection.getConnection();
+			String h = jd.getClient().getHost();
+			int hc = (h.hashCode() & 0x7fffffff) % 1000;
+
 			/**
 			 * This is the old way of doing increement. But it does not work and we need to
 			 * use increment List<Long> responses = jd.bitfield("globalIncrement", "INCRBY",
 			 * "u32", "0", "1", "OVERFLOW", "WRAP"); return responses.get(0);
 			 */
-			return jd.incr("global_id_number");
+			return jd.incr("global_id_number") + hc;
 
 		} catch (Exception e)
 		{

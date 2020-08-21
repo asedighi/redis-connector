@@ -638,11 +638,13 @@ public class RedisDataFactory extends DataFactory
 		try
 		{
 			jd = jConnection.getConnection();
+			String h = jd.getClient().getHost();
+			int hc = (h.hashCode() & 0x7fffffff) % 1000;
 			/**
 			 * List<Long> responses = jd.bitfield("globalIncrement", "INCRBY", "u32", "0",
 			 * "1", "OVERFLOW", "WRAP"); return responses.get(0);
 			 */
-			return jd.incr("global_id_number");
+			return jd.incr("global_id_number") + hc;
 
 		} catch (Exception e)
 		{
