@@ -55,7 +55,7 @@ This line creates a Jedis pool.  The number of connection in the pool is 30, and
 ## API Structure
 Figure below shows the various layers of the API.  
 
-![API](https://github.com/CSE-FIS/api/blob/master/api.jpg)
+![API](https://github.com/asedighi/redis-connector/blob/master/api.jpg)
 
 The API follows a layered approach.  The "lowest" layer is the connection layer which manages connections via Jedis/Spring/JedisPool to the backend Redis endpoints.  JedisPool connection type also supports pipelining as a subtype. Pipelining performs betters in batch-type requests, but it is can default back to the Jedispool connection type if no pipelining is used.  The Jedis version the code is similar to JedisPool, but the pool is implemented by the API. It should perform better, but it is less resilient.  In the Jedis version, you are essentially creating a many pools of single connections to Redis.  These custom pools have less overhead, but a failure will cause a new pool to be created.
 
